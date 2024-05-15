@@ -40,7 +40,7 @@ under the License.
         <jacoco.version>0.8.7</jacoco.version>
         <iceberg.version>1.5.0</iceberg.version>
         <awsv2.version>2.17.257</awsv2.version>
-        <paimon.version>0.8.0</paimon.version>
+        <paimon.version>0.7.0-incubating</paimon.version>
         <delta-kernel.version>3.1.0</delta-kernel.version>
         <staros.version>3.3-rc1</staros.version>
         <python>python</python>
@@ -347,7 +347,6 @@ under the License.
             <version>${delta-kernel.version}</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.apache.thrift/libthrift -->
         <dependency>
             <groupId>org.apache.thrift</groupId>
@@ -581,6 +580,12 @@ under the License.
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.70</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.github.ben-manes.caffeine/caffeine -->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
@@ -701,6 +706,14 @@ under the License.
                     <groupId>org.glassfish</groupId>
                     <artifactId>javax.el</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>zookeeper</artifactId>
+                    <groupId>org.apache.zookeeper</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
 
@@ -712,6 +725,14 @@ under the License.
                 <exclusion>
                     <groupId>org.glassfish</groupId>
                     <artifactId>javax.el</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>zookeeper</artifactId>
+                    <groupId>org.apache.zookeeper</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -732,12 +753,6 @@ under the License.
             <groupId>org.apache.paimon</groupId>
             <artifactId>paimon-oss</artifactId>
             <version>${paimon.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.xerial.snappy</groupId>
-            <artifactId>snappy-java</artifactId>
-            <version>1.1.10.5</version>
         </dependency>
 
         <dependency>
@@ -852,6 +867,24 @@ under the License.
             <groupId>org.apache.ranger</groupId>
             <artifactId>ranger-plugins-common</artifactId>
             <version>2.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.8.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>7.17.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>8.11.3</version>
         </dependency>
 
         <dependency>

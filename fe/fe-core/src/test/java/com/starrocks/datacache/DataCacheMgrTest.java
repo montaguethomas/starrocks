@@ -16,7 +16,7 @@ package com.starrocks.datacache;
 
 import com.starrocks.sql.analyzer.SemanticException;
 import com.starrocks.sql.ast.QualifiedName;
-import org.elasticsearch.common.collect.List;
+import org.elasticsearch.core.List;
 import org.junit.Assert;
 import org.junit.Test;
 
