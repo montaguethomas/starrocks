@@ -220,7 +220,7 @@ under the License.
             <dependency>
                 <groupId>org.apache.kudu</groupId>
                 <artifactId>kudu-client</artifactId>
-                <version>1.16.0</version>
+                <version>1.17.0</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/com.github.seancfoley/ipaddress -->
