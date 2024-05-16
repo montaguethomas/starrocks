@@ -236,6 +236,20 @@ under the License.
                 </exclusions>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.apache.kudu/kudu-client -->
+            <dependency>
+                <groupId>org.apache.kudu</groupId>
+                <artifactId>kudu-client</artifactId>
+                <version>1.17.0</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.github.seancfoley/ipaddress -->
+            <dependency>
+                <groupId>com.github.seancfoley</groupId>
+                <artifactId>ipaddress</artifactId>
+                <version>5.4.2</version>
+            </dependency>
+
             <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
             <dependency>
                 <groupId>com.google.code.gson</groupId>
