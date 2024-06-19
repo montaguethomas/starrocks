@@ -48,8 +48,8 @@ COPY . ${BUILD_ROOT}
 WORKDIR ${BUILD_ROOT}
 RUN --mount=type=cache,target=/root/.m2/ STARROCKS_VERSION=${RELEASE_VERSION} BUILD_TYPE=${BUILD_TYPE} CUSTOM_MVN=${CUSTOM_MVN} MAVEN_OPTS=${MAVEN_OPTS} ./build.sh --be --enable-shared-data --clean -j `nproc`
 
-FROM ubuntu:22.04 as datadog-downloader
 
+FROM ubuntu:22.04 as datadog-downloader
 RUN apt-get update -y && apt-get install -y --no-install-recommends wget tar xz-utils
 
 # download the latest dd-java-agent
@@ -61,6 +61,7 @@ RUN imagearch=$(arch | sed 's/aarch64/arm64/; s/x86_64/amd64/') \
     && tar xvf ddprof-linux.tar.xz && mkdir -p /datadog/  \
     && mv ddprof/bin/ddprof /datadog/ \
     && chmod 755 /datadog/ddprof
+
 
 FROM busybox:latest
 ARG RELEASE_VERSION
