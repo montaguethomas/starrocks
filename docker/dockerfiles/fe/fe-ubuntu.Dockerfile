@@ -25,7 +25,7 @@ FROM artifacts-from-${ARTIFACT_SOURCE} as artifacts
 FROM ubuntu:22.04
 ARG STARROCKS_ROOT=/opt/starrocks
 
-RUN apt-get update -y && apt-get install -y --no-install-recommends \
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends \
         default-jdk mysql-client curl vim tree net-tools less tzdata locales netcat && \
         ln -fs /usr/share/zoneinfo/UTC /etc/localtime && \
         dpkg-reconfigure -f noninteractive tzdata && \

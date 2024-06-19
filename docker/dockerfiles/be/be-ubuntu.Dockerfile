@@ -27,7 +27,7 @@ RUN rm -f /release/be_artifacts/be/lib/starrocks_be.debuginfo
 FROM ubuntu:22.04
 ARG STARROCKS_ROOT=/opt/starrocks
 
-RUN apt-get update -y && apt-get install -y --no-install-recommends \
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends \
         binutils-dev default-jdk mysql-client curl vim tree net-tools less tzdata locales pigz inotify-tools rclone gdb && \
         ln -fs /usr/share/zoneinfo/UTC /etc/localtime && \
         dpkg-reconfigure -f noninteractive tzdata && \
