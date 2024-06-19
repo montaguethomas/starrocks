@@ -10,39 +10,43 @@
 ARG builder=starrocks/dev-env-ubuntu:latest
 ARG RELEASE_VERSION
 ARG BUILD_TYPE=Release
+ARG CUSTOM_MVN
 ARG MAVEN_OPTS="-Dmaven.artifact.threads=128"
 ARG BUILD_ROOT=/build
 
 FROM ${builder} as fe-builder
 ARG RELEASE_VERSION
 ARG BUILD_TYPE
+ARG CUSTOM_MVN
 ARG MAVEN_OPTS
 ARG BUILD_ROOT
 COPY . ${BUILD_ROOT}
 WORKDIR ${BUILD_ROOT}
 # clean and build Frontend and Spark Dpp application
-RUN --mount=type=cache,target=/root/.m2/ STARROCKS_VERSION=${RELEASE_VERSION} BUILD_TYPE=${BUILD_TYPE} MAVEN_OPTS=${MAVEN_OPTS} ./build.sh --fe --clean
+RUN --mount=type=cache,target=/root/.m2/ STARROCKS_VERSION=${RELEASE_VERSION} BUILD_TYPE=${BUILD_TYPE} CUSTOM_MVN=${CUSTOM_MVN} MAVEN_OPTS=${MAVEN_OPTS} ./build.sh --fe --clean
 
 
 FROM ${builder} as broker-builder
 ARG RELEASE_VERSION
+ARG CUSTOM_MVN
 ARG MAVEN_OPTS
 ARG BUILD_ROOT
 COPY . ${BUILD_ROOT}
 WORKDIR ${BUILD_ROOT}
 # clean and build Frontend and Spark Dpp application
-RUN --mount=type=cache,target=/root/.m2/ cd fs_brokers/apache_hdfs_broker/ && STARROCKS_VERSION=${RELEASE_VERSION} MAVEN_OPTS=${MAVEN_OPTS} ./build.sh
+RUN --mount=type=cache,target=/root/.m2/ cd fs_brokers/apache_hdfs_broker/ && STARROCKS_VERSION=${RELEASE_VERSION} CUSTOM_MVN=${CUSTOM_MVN} MAVEN_OPTS=${MAVEN_OPTS} ./build.sh
 
 
 FROM ${builder} as be-builder
 ARG RELEASE_VERSION
+ARG CUSTOM_MVN
 ARG MAVEN_OPTS
 ARG BUILD_ROOT
 # build Backend in different mode (build_type could be Release, DEBUG, or ASAN). Default value is Release.
 ARG BUILD_TYPE
 COPY . ${BUILD_ROOT}
 WORKDIR ${BUILD_ROOT}
-RUN --mount=type=cache,target=/root/.m2/ STARROCKS_VERSION=${RELEASE_VERSION} BUILD_TYPE=${BUILD_TYPE} MAVEN_OPTS=${MAVEN_OPTS} ./build.sh --be --enable-shared-data --clean -j `nproc`
+RUN --mount=type=cache,target=/root/.m2/ STARROCKS_VERSION=${RELEASE_VERSION} BUILD_TYPE=${BUILD_TYPE} CUSTOM_MVN=${CUSTOM_MVN} MAVEN_OPTS=${MAVEN_OPTS} ./build.sh --be --enable-shared-data --clean -j `nproc`
 
 FROM ubuntu:22.04 as datadog-downloader
 
