@@ -407,6 +407,7 @@ under the License.
                     </execution>
                 </executions>
             </plugin>
+        </plugins>
 
         <pluginManagement>
             <plugins>
