@@ -491,24 +491,28 @@ if [ ${BUILD_BE} -eq 1 ]; then
         popd &>/dev/null
     fi
     cp -r -p ${STARROCKS_HOME}/be/output/www/* ${STARROCKS_OUTPUT}/be/www/
-    cp -r -p ${STARROCKS_HOME}/java-extensions/jdbc-bridge/target/starrocks-jdbc-bridge-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages
-    cp -r -p ${STARROCKS_HOME}/java-extensions/udf-extensions/target/udf-extensions-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages
-    cp -r -p ${STARROCKS_HOME}/java-extensions/java-utils/target/starrocks-java-utils-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages
-    cp -r -p ${STARROCKS_HOME}/java-extensions/jni-connector/target/starrocks-jni-connector-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages
-    cp -r -p ${STARROCKS_HOME}/java-extensions/hudi-reader/target/starrocks-hudi-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages
-    cp -r -p ${STARROCKS_HOME}/java-extensions/hudi-reader/target/starrocks-hudi-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/hudi-reader-lib
-    cp -r -p ${STARROCKS_HOME}/java-extensions/odps-reader/target/starrocks-odps-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages
-    cp -r -p ${STARROCKS_HOME}/java-extensions/odps-reader/target/starrocks-odps-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/odps-reader-lib
-    cp -r -p ${STARROCKS_HOME}/java-extensions/paimon-reader/target/starrocks-paimon-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages
-    cp -r -p ${STARROCKS_HOME}/java-extensions/paimon-reader/target/starrocks-paimon-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/paimon-reader-lib
-    cp -r -p ${STARROCKS_HOME}/java-extensions/hadoop-ext/target/starrocks-hadoop-ext.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages
-    cp -r -p ${STARROCKS_HOME}/java-extensions/hive-reader/target/starrocks-hive-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages
-    cp -r -p ${STARROCKS_HOME}/java-extensions/hive-reader/target/starrocks-hive-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/hive-reader-lib
+    cp -r -p ${STARROCKS_HOME}/java-extensions/jdbc-bridge/target/starrocks-jdbc-bridge-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages/
+    cp -r -p ${STARROCKS_HOME}/java-extensions/udf-extensions/target/udf-extensions-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages/
+    cp -r -p ${STARROCKS_HOME}/java-extensions/java-utils/target/starrocks-java-utils-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages/
+    cp -r -p ${STARROCKS_HOME}/java-extensions/jni-connector/target/starrocks-jni-connector-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages/
+    cp -r -p ${STARROCKS_HOME}/java-extensions/hudi-reader/target/starrocks-hudi-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages/
+    mkdir -p ${STARROCKS_OUTPUT}/be/lib/hudi-reader-lib
+    cp -r -p ${STARROCKS_HOME}/java-extensions/hudi-reader/target/starrocks-hudi-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/hudi-reader-lib/
+    cp -r -p ${STARROCKS_HOME}/java-extensions/odps-reader/target/starrocks-odps-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages/
+    mkdir -p ${STARROCKS_OUTPUT}/be/lib/odps-reader-lib
+    cp -r -p ${STARROCKS_HOME}/java-extensions/odps-reader/target/starrocks-odps-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/odps-reader-lib/
+    cp -r -p ${STARROCKS_HOME}/java-extensions/paimon-reader/target/starrocks-paimon-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages/
+    mkdir -p ${STARROCKS_OUTPUT}/be/lib/paimon-reader-lib
+    cp -r -p ${STARROCKS_HOME}/java-extensions/paimon-reader/target/starrocks-paimon-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/paimon-reader-lib/
+    cp -r -p ${STARROCKS_HOME}/java-extensions/hadoop-ext/target/starrocks-hadoop-ext.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages/
+    cp -r -p ${STARROCKS_HOME}/java-extensions/hive-reader/target/starrocks-hive-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/jni-packages/
+    mkdir -p ${STARROCKS_OUTPUT}/be/lib/hive-reader-lib
+    cp -r -p ${STARROCKS_HOME}/java-extensions/hive-reader/target/starrocks-hive-reader-jar-with-dependencies.jar ${STARROCKS_OUTPUT}/be/lib/hive-reader-lib/
     cp -r -p ${STARROCKS_THIRDPARTY}/installed/hadoop/share/hadoop/common ${STARROCKS_OUTPUT}/be/lib/hadoop/
     cp -r -p ${STARROCKS_THIRDPARTY}/installed/hadoop/share/hadoop/hdfs ${STARROCKS_OUTPUT}/be/lib/hadoop/
-    cp -p ${STARROCKS_THIRDPARTY}/installed/hadoop/share/hadoop/tools/lib/hadoop-azure-* ${STARROCKS_OUTPUT}/be/lib/hadoop/hdfs
-    cp -p ${STARROCKS_THIRDPARTY}/installed/hadoop/share/hadoop/tools/lib/azure-* ${STARROCKS_OUTPUT}/be/lib/hadoop/hdfs
-    cp -p ${STARROCKS_THIRDPARTY}/installed/gcs_connector/*.jar ${STARROCKS_OUTPUT}/be/lib/hadoop/hdfs
+    cp -p ${STARROCKS_THIRDPARTY}/installed/hadoop/share/hadoop/tools/lib/hadoop-azure-* ${STARROCKS_OUTPUT}/be/lib/hadoop/hdfs/
+    cp -p ${STARROCKS_THIRDPARTY}/installed/hadoop/share/hadoop/tools/lib/azure-* ${STARROCKS_OUTPUT}/be/lib/hadoop/hdfs/
+    cp -p ${STARROCKS_THIRDPARTY}/installed/gcs_connector/*.jar ${STARROCKS_OUTPUT}/be/lib/hadoop/hdfs/
     cp -r -p ${STARROCKS_THIRDPARTY}/installed/hadoop/lib/native ${STARROCKS_OUTPUT}/be/lib/hadoop/
 
     rm -f ${STARROCKS_OUTPUT}/be/lib/hadoop/common/lib/log4j-1.2.17.jar
