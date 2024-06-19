@@ -47,14 +47,14 @@ RUN --mount=type=cache,target=/root/.m2/ STARROCKS_VERSION=${RELEASE_VERSION} BU
 
 
 FROM ubuntu:22.04 as datadog-downloader
-RUN apt-get update -y && apt-get install -y --no-install-recommends curl tar xz-utils
+RUN apt-get update -y && apt-get install -y --no-install-recommends ca-certificates curl tar xz-utils
 
 # download the latest dd-java-agent
 ADD 'https://dtdg.co/latest-java-tracer' /datadog/dd-java-agent.jar
 
 # Get ddprof for BE profiling
 RUN imagearch=$(arch | sed 's/aarch64/arm64/; s/x86_64/amd64/') \
-    && curl -so ddprof-linux.tar.xz "https://github.com/DataDog/ddprof/releases/latest/download/ddprof-${imagearch}-linux.tar.xz" \
+    && curl -sLo ddprof-linux.tar.xz "https://github.com/DataDog/ddprof/releases/latest/download/ddprof-${imagearch}-linux.tar.xz" \
     && tar xvf ddprof-linux.tar.xz && mkdir -p /datadog/  \
     && mv ddprof/bin/ddprof /datadog/ \
     && chmod 755 /datadog/ddprof
