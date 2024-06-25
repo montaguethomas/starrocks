@@ -227,6 +227,11 @@ under the License.
             <artifactId>json</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
