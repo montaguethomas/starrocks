@@ -758,9 +758,20 @@ under the License.
         </dependency>
 
         <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>aircompressor</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.paimon</groupId>
             <artifactId>paimon-bundle</artifactId>
             <version>${paimon.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>aircompressor</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -1103,6 +1114,31 @@ under the License.
                 </executions>
             </plugin>
 
+            <!-- copy all dependency libs to target lib dir -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <skip>${skip.plugin}</skip>
+                            <!-- exclude test only jars(junit&mysql-connector), GPL jar(mysql-connector) must be excluded in release package -->
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- add gensrc java build src dir -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -1243,6 +1279,16 @@ under the License.
                                         <versionRange>[1.7,)</versionRange>
                                         <goals>
                                             <goal>add-source</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <versionRange>[3.1.1,)</versionRange>
+                                        <goals>
+                                            <goal>copy-dependencies</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                 </pluginExecution>
