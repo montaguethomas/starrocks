@@ -174,10 +174,10 @@ CURL_SOURCE=curl-8.4.0
 CURL_MD5SUM="533e8a3b1228d5945a6a512537bea4c7"
 
 # RE2
-RE2_DOWNLOAD="https://github.com/google/re2/archive/2024-06-01.tar.gz"
-RE2_NAME=re2-2024-06-01.tar.gz
-RE2_SOURCE=re2-2024-06-01
-RE2_MD5SUM="498b85ca94755285d5c04ffc065b423e"
+RE2_DOWNLOAD="https://github.com/google/re2/archive/2023-11-01.tar.gz"
+RE2_NAME=re2-2023-11-01.tar.gz
+RE2_SOURCE=re2-2023-11-01
+RE2_MD5SUM="45925144c4da1ceba739f149a52bd555"
 
 # boost
 BOOST_DOWNLOAD="https://archives.boost.io/release/1.80.0/source/boost_1_80_0.tar.gz"
