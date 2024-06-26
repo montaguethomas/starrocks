@@ -255,8 +255,8 @@ echo "Finished patching $GLOG_SOURCE"
 
 # re2 patch
 cd $TP_SOURCE_DIR/$RE2_SOURCE
-if [ ! -f $PATCHED_MARK ]; then
-    patch -p1 < $TP_PATCH_DIR/re2-2022-12-01.patch
+if [ ! -f $PATCHED_MARK ] && [ -f "${RE2_SOURCE}.patch" ]; then
+    patch -p1 < $TP_PATCH_DIR/"${RE2_SOURCE}.patch"
     touch $PATCHED_MARK
 fi
 cd -
