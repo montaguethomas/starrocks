@@ -399,6 +399,7 @@ build_simdjson() {
 
 # snappy
 build_snappy() {
+    rm -rf $TP_SOURCE_DIR/$SNAPPY_SOURCE
     mkdir -p $TP_SOURCE_DIR/$SNAPPY_SOURCE
     check_if_source_exist $SNAPPY_SOURCE
     cd $TP_SOURCE_DIR/$SNAPPY_SOURCE
@@ -408,7 +409,6 @@ build_snappy() {
 
     mkdir -p $BUILD_DIR
     cd $BUILD_DIR
-    rm -rf CMakeCache.txt CMakeFiles/
     $CMAKE_CMD -DCMAKE_INSTALL_PREFIX=$TP_INSTALL_DIR \
     -G "${CMAKE_GENERATOR}" \
     -DCMAKE_INSTALL_LIBDIR=lib64 \

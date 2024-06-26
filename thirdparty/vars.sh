@@ -132,10 +132,10 @@ SNAPPY_VERSION="1.2.1"
 SNAPPY_SOURCE="snappy-${SNAPPY_VERSION}"
 
 # gperftools
-GPERFTOOLS_DOWNLOAD="https://github.com/gperftools/gperftools/archive/gperftools-2.7.tar.gz"
-GPERFTOOLS_NAME=gperftools-2.7.tar.gz
-GPERFTOOLS_SOURCE=gperftools-gperftools-2.7
-GPERFTOOLS_MD5SUM="797e7b7f6663288e2b90ab664861c61a"
+GPERFTOOLS_DOWNLOAD="https://github.com/gperftools/gperftools/archive/gperftools-2.15.tar.gz"
+GPERFTOOLS_NAME=gperftools-2.15.tar.gz
+GPERFTOOLS_SOURCE=gperftools-gperftools-2.15
+GPERFTOOLS_MD5SUM="44eb163362ea2449f89276f28b13c5a3"
 
 # zlib
 ZLIB_DOWNLOAD="https://github.com/madler/zlib/archive/refs/tags/v1.2.11.tar.gz"
