@@ -1,4 +1,5 @@
-
+# This docker file build the Starrocks fe ubuntu image
+#
 ARG ARTIFACT_SOURCE=image
 
 ARG ARTIFACTIMAGE=starrocks/artifacts-alpine:latest
