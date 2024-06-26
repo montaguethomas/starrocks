@@ -28,12 +28,12 @@ fi
 
 # set STARROCKS_THIRDPARTY
 if [[ -z ${STARROCKS_THIRDPARTY} ]]; then
-    export STARROCKS_THIRDPARTY=${STARROCKS_HOME}/thirdparty
+    export STARROCKS_THIRDPARTY="${STARROCKS_HOME}/thirdparty"
 fi
 
 # set cachelib dir
 if [[ -z ${CACHELIB_DIR} ]]; then
-    export CACHELIB_DIR=${STARROCKS_THIRDPARTY}/installed/cachelib
+    export CACHELIB_DIR="${STARROCKS_THIRDPARTY}/installed/cachelib"
 fi
 
 # check python
@@ -54,10 +54,10 @@ fi
 
 # set GCC HOME
 if [[ -z ${STARROCKS_GCC_HOME} ]]; then
-    export STARROCKS_GCC_HOME=$(dirname `which gcc`)/..
+    export STARROCKS_GCC_HOME="$(dirname "$(dirname "$(which gcc)")")"
 fi
 
-gcc_ver=`${STARROCKS_GCC_HOME}/bin/gcc -dumpfullversion -dumpversion`
+gcc_ver=$(${STARROCKS_GCC_HOME}/bin/gcc -dumpfullversion -dumpversion)
 required_ver="5.3.1"
 if [[ ! "$(printf '%s\n' "$required_ver" "$gcc_ver" | sort -V | head -n1)" = "$required_ver" ]]; then
     echo "Error: GCC version (${gcc_ver}) must be greater than or equal to ${required_ver}"
@@ -65,11 +65,11 @@ if [[ ! "$(printf '%s\n' "$required_ver" "$gcc_ver" | sort -V | head -n1)" = "$r
 fi
 
 # export CLANG COMPATIBLE FLAGS
-export CLANG_COMPATIBLE_FLAGS=`echo | ${STARROCKS_GCC_HOME}/bin/gcc -Wp,-v -xc++ - -fsyntax-only 2>&1 \
-                | grep -E '^\s+/' | awk '{print "-I" $1}' | tr '\n' ' '`
+export CLANG_COMPATIBLE_FLAGS=$(echo | ${STARROCKS_GCC_HOME}/bin/gcc -Wp,-v -xc++ - -fsyntax-only 2>&1 \
+                | grep -E '^\s+/' | awk '{print "-I" $1}' | tr '\n' ' ')
 
 if [[ -z ${JAVA_HOME} ]]; then
-    export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which javac))))"
+    export JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(which javac)")")")"
     echo "Infered JAVA_HOME=$JAVA_HOME"
 fi
 

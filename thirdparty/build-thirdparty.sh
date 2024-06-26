@@ -28,8 +28,7 @@
 #################################################################################
 set -e
 
-curdir=`dirname "$0"`
-curdir=`cd "$curdir"; pwd`
+curdir="$(dirname "$(readlink -f "$0")")"
 
 export STARROCKS_HOME=${STARROCKS_HOME:-$curdir/..}
 export TP_DIR=$curdir

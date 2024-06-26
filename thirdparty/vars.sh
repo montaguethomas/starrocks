@@ -24,9 +24,9 @@
 # --job param for *make*
 # support macos
 if [[ $(uname) == "Darwin" ]]; then
-    default_parallel=$[$(sysctl -n hw.physicalcpu)/4+1]
+    default_parallel=$(($(sysctl -n hw.physicalcpu)/4+1))
 else
-    default_parallel=$[$(nproc)/4+1]
+    default_parallel=$(($(nproc)/4+1))
 fi
 
 # use the value if $PARALEL is already set, otherwise use $default_parallel
@@ -192,10 +192,10 @@ LEVELDB_SOURCE=leveldb-1.20
 LEVELDB_MD5SUM="298b5bddf12c675d6345784261302252"
 
 # brpc
-BRPC_DOWNLOAD="https://github.com/apache/brpc/archive/refs/tags/1.3.0.tar.gz"
-BRPC_NAME=brpc-1.3.0.tar.gz
-BRPC_SOURCE=brpc-1.3.0
-BRPC_MD5SUM="9470f1a77ec153e82cd8a25dc2148e47"
+BRPC_DOWNLOAD="https://github.com/apache/brpc/archive/refs/tags/1.9.0.tar.gz"
+BRPC_NAME=brpc-1.9.0.tar.gz
+BRPC_SOURCE=brpc-1.9.0
+BRPC_MD5SUM="a2b626d96a5b017f2a6701ffa594530c"
 
 # rocksdb
 ROCKSDB_DOWNLOAD="https://github.com/facebook/rocksdb/archive/refs/tags/v6.22.1.zip"
