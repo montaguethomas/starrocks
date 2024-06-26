@@ -129,6 +129,7 @@ GTEST_MD5SUM="ecd1fa65e7de707cd5c00bdac56022cd"
 # snappy
 SNAPPY_REPO="https://github.com/google/snappy.git"
 SNAPPY_VERSION="1.2.1"
+SNAPPY_SOURCE="snappy-${SNAPPY_VERSION}"
 
 # gperftools
 GPERFTOOLS_DOWNLOAD="https://github.com/gperftools/gperftools/archive/gperftools-2.7.tar.gz"
