@@ -17,7 +17,7 @@ ENV STARROCKS_THIRDPARTY=/var/local/thirdparty
 RUN apk add --no-cache bash curl libc6-compat mysql-client openjdk8-jre-base
 # Build packages
 # byacc conflicts with bison due to both providing /usr/bin/yacc. byacc is just a symlink to yacc and bison's yacc is suppose to be compatible.
-RUN apk add --no-cache autoconf automake binutils-dev bison build-base ccache cmake dev86 flex git lld lzo-dev libtool linux-headers maven ninja python3 zip \
+RUN apk add --no-cache abseil-cpp autoconf automake binutils-dev bison build-base ccache cmake dev86 flex git lld lzo-dev libtool linux-headers maven ninja python3 zip \
     && ln -s yacc /usr/bin/byacc
 COPY . ${BUILD_ROOT}
 WORKDIR ${BUILD_ROOT}
