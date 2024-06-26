@@ -544,19 +544,10 @@ build_brpc() {
     cd $TP_SOURCE_DIR/$BRPC_SOURCE
     CMAKE_GENERATOR="Unix Makefiles"
     BUILD_SYSTEM='make'
-# hack
-cat <<'EOF' > readlink
-#!/bin/bash
-set -e
-for f in ${@:2}
-do
-  /usr/bin/readlink -f $2
-  shift 1
-done
-EOF
-chmod +x readlink
-    PATH="$TP_SOURCE_DIR/$BRPC_SOURCE:$PATH" ./config_brpc.sh --headers="$TP_INSTALL_DIR/include /usr/include" --libs="$TP_INSTALL_DIR/bin $TP_INSTALL_DIR/gperftools $TP_INSTALL_DIR/lib /usr/lib" --with-glog
-rm readlink # hack cleanup
+    mkdir -p include lib
+    ln -sf /usr/include/* $TP_INSTALL_DIR/include/*  include/
+    ln -sf /usr/lib/* $TP_INSTALL_DIR/lib/* $TP_INSTALL_DIR/bin/* $TP_INSTALL_DIR/gperftools/lib/* lib/
+    BASH=$(which bash) ./config_brpc.sh --headers="$TP_SOURCE_DIR/$BRPC_SOURCE/include" --libs="$TP_SOURCE_DIR/$BRPC_SOURCE/lib" --with-glog
     make -j$PARALLEL
     cp -rf output/* ${TP_INSTALL_DIR}/
     if [ -f $TP_INSTALL_DIR/lib/libbrpc.a ]; then
