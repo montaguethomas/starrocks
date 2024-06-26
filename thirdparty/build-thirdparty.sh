@@ -231,7 +231,7 @@ build_llvm() {
 
     LLVM_TARGETS_TO_BUILD=(
         "LLVMBitstreamReader"
-        "LLVMRuntimeDyld" 
+        "LLVMRuntimeDyld"
         "LLVMOption"
         "LLVMAsmPrinter"
         "LLVMProfileData"
@@ -399,8 +399,10 @@ build_simdjson() {
 
 # snappy
 build_snappy() {
-    check_if_source_exist $SNAPPY_SOURCE
+    git clone $SNAPPY_REPO $TP_SOURCE_DIR/$SNAPPY_SOURCE
     cd $TP_SOURCE_DIR/$SNAPPY_SOURCE
+    git checkout -b $SNAPPY_VERSION $SNAPPY_VERSION
+    git submodule update --init
 
     mkdir -p $BUILD_DIR
     cd $BUILD_DIR

@@ -63,7 +63,7 @@ export TP_JAR_DIR=$TP_INSTALL_DIR/lib/jar
 # Definitions for architecture-related thirdparty
 MACHINE_TYPE=$(uname -m)
 # handle mac m1 platform, change arm64 to aarch64
-if [[ "${MACHINE_TYPE}" == "arm64" ]]; then 
+if [[ "${MACHINE_TYPE}" == "arm64" ]]; then
     MACHINE_TYPE="aarch64"
 fi
 
@@ -127,10 +127,8 @@ GTEST_SOURCE=googletest-release-1.10.0
 GTEST_MD5SUM="ecd1fa65e7de707cd5c00bdac56022cd"
 
 # snappy
-SNAPPY_DOWNLOAD="https://github.com/google/snappy/archive/1.1.8.tar.gz"
-SNAPPY_NAME=snappy-1.1.8.tar.gz
-SNAPPY_SOURCE=snappy-1.1.8
-SNAPPY_MD5SUM="70e48cba7fecf289153d009791c9977f"
+SNAPPY_REPO="https://github.com/google/snappy.git"
+SNAPPY_VERSION="1.2.1"
 
 # gperftools
 GPERFTOOLS_DOWNLOAD="https://github.com/gperftools/gperftools/archive/gperftools-2.7.tar.gz"
@@ -410,7 +408,7 @@ LLVM_SOURCE="llvm-project-16.0.6.src"
 LLVM_MD5SUM="dc13938a604f70379d3b38d09031de98"
 
 # all thirdparties which need to be downloaded is set in array TP_ARCHIVES
-TP_ARCHIVES="LIBEVENT OPENSSL THRIFT PROTOBUF GFLAGS GLOG GTEST RAPIDJSON SIMDJSON SNAPPY GPERFTOOLS ZLIB LZ4 BZIP CURL \
+TP_ARCHIVES="LIBEVENT OPENSSL THRIFT PROTOBUF GFLAGS GLOG GTEST RAPIDJSON SIMDJSON GPERFTOOLS ZLIB LZ4 BZIP CURL \
             RE2 BOOST LEVELDB BRPC ROCKSDB KRB5 SASL LIBRDKAFKA PULSAR FLATBUFFERS ARROW BROTLI ZSTD S2 BITSHUFFLE CROARINGBITMAP \
             JEMALLOC CCTZ FMT RYU BREAK_PAD HADOOP JDK RAGEL HYPERSCAN MARIADB JINDOSDK AWS_SDK_CPP VPACK OPENTELEMETRY \
             BENCHMARK FAST_FLOAT STARCACHE STREAMVBYTE BROKER_THIRDPARTY_JARS JANSSON AVRO SERDES GCS_CONNECTOR \
