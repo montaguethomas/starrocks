@@ -21,9 +21,7 @@ RUN apk add --no-cache abseil-cpp-dev autoconf automake binutils-dev bison build
     && ln -s yacc /usr/bin/byacc
 COPY . ${BUILD_ROOT}
 WORKDIR ${BUILD_ROOT}
-RUN --mount=type=cache,target=${BUILD_ROOT}/thirdparty/installed \
-    --mount=type=cache,target=${BUILD_ROOT}/thirdparty/src \
-    ./thirdparty/build-thirdparty.sh && mkdir -p ${STARROCKS_THIRDPARTY} && cp -r ./thirdparty/installed ${STARROCKS_THIRDPARTY}/
+RUN ./thirdparty/build-thirdparty.sh && mkdir -p ${STARROCKS_THIRDPARTY} && cp -r ./thirdparty/installed ${STARROCKS_THIRDPARTY}/
 
 
 FROM builder as fe-builder
