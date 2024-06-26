@@ -555,7 +555,7 @@ do
 done
 EOF
 chmod +x readlink
-    PATH="$TP_SOURCE_DIR/$BRPC_SOURCE:$PATH" ./config_brpc.sh --headers="$TP_INSTALL_DIR/include /usr/include" --libs="$TP_INSTALL_DIR/bin $TP_INSTALL_DIR/lib /usr/lib" --with-glog
+    PATH="$TP_SOURCE_DIR/$BRPC_SOURCE:$PATH" ./config_brpc.sh --headers="$TP_INSTALL_DIR/include /usr/include" --libs="$TP_INSTALL_DIR/bin $TP_INSTALL_DIR/gperftools $TP_INSTALL_DIR/lib /usr/lib" --with-glog
 rm readlink # hack cleanup
     make -j$PARALLEL
     cp -rf output/* ${TP_INSTALL_DIR}/
