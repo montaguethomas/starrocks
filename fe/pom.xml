@@ -738,6 +738,10 @@ under the License.
                 <exclusions>
                     <exclusion>
                         <groupId>com.aliyun</groupId>
+                        <artifactId>datalake20200710</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.aliyun</groupId>
                         <artifactId>tea</artifactId>
                     </exclusion>
                     <exclusion>
