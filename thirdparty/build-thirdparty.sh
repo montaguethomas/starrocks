@@ -346,16 +346,12 @@ build_gflags() {
 build_glog() {
     check_if_source_exist $GLOG_SOURCE
     cd $TP_SOURCE_DIR/$GLOG_SOURCE
-
-    # to generate config.guess and config.sub to support aarch64
-    rm -rf config.*
-    autoreconf -i
-
-    LDFLAGS="-L${TP_LIB_DIR}" \
-    CPPFLAGS="-I${TP_INCLUDE_DIR}" \
-    ./configure --prefix=$TP_INSTALL_DIR --enable-frame-pointers --disable-shared --enable-static
-    make -j$PARALLEL
-    make install
+    mkdir -p $BUILD_DIR
+    cd $BUILD_DIR
+    rm -rf CMakeCache.txt CMakeFiles/
+    $CMAKE_CMD -G "${CMAKE_GENERATOR}" -DCMAKE_INSTALL_PREFIX=$TP_INSTALL_DIR -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_POSITION_INDEPENDENT_CODE=On ../
+    ${BUILD_SYSTEM} -j$PARALLEL
+    ${BUILD_SYSTEM} install
 }
 
 # gtest
@@ -539,20 +535,13 @@ build_leveldb() {
 # brpc
 build_brpc() {
     check_if_source_exist $BRPC_SOURCE
-
     cd $TP_SOURCE_DIR/$BRPC_SOURCE
-    CMAKE_GENERATOR="Unix Makefiles"
-    BUILD_SYSTEM='make'
-    mkdir -p include lib
-    ln -sf /usr/include/* $TP_INSTALL_DIR/include/*  include/
-    ln -sf /usr/lib/* $TP_INSTALL_DIR/lib/* $TP_INSTALL_DIR/bin/* $TP_INSTALL_DIR/gperftools/lib/* lib/
-    BASH=$(which bash) ./config_brpc.sh --headers="$TP_SOURCE_DIR/$BRPC_SOURCE/include" --libs="$TP_SOURCE_DIR/$BRPC_SOURCE/lib" --with-glog
-    make -j$PARALLEL
-    cp -rf output/* ${TP_INSTALL_DIR}/
-    if [ -f $TP_INSTALL_DIR/lib/libbrpc.a ]; then
-        mkdir -p $TP_INSTALL_DIR/lib64
-        cp $TP_SOURCE_DIR/$BRPC_SOURCE/output/lib/libbrpc.a $TP_INSTALL_DIR/lib64/
-    fi
+    mkdir -p $BUILD_DIR
+    cd $BUILD_DIR
+    rm -rf CMakeCache.txt CMakeFiles/
+    $CMAKE_CMD -G "${CMAKE_GENERATOR}" -DCMAKE_INSTALL_PREFIX=$TP_INSTALL_DIR -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_POSITION_INDEPENDENT_CODE=On -DWITH_GLOG=ON ../
+    ${BUILD_SYSTEM} -j$PARALLEL
+    ${BUILD_SYSTEM} install
 }
 
 # rocksdb
