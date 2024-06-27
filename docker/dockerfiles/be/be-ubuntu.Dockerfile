@@ -24,7 +24,7 @@ FROM artifacts-from-${ARTIFACT_SOURCE} as artifacts
 RUN rm -f /release/be_artifacts/be/lib/starrocks_be.debuginfo
 
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 ARG STARROCKS_ROOT=/opt/starrocks
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends \

@@ -22,7 +22,7 @@ COPY ${LOCAL_REPO_PATH}/output/fe /release/fe_artifacts/fe
 FROM artifacts-from-${ARTIFACT_SOURCE} as artifacts
 
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 ARG STARROCKS_ROOT=/opt/starrocks
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends \
