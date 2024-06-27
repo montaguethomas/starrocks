@@ -46,21 +46,19 @@ ARG MAVEN_OPTS
 RUN --mount=type=cache,target=/root/.m2/ STARROCKS_VERSION=${RELEASE_VERSION} BUILD_TYPE=${BUILD_TYPE} CUSTOM_MVN=${CUSTOM_MVN} MAVEN_OPTS=${MAVEN_OPTS} ./build.sh --be --enable-shared-data --clean -j `nproc`
 
 
-FROM ubuntu:22.04 as datadog-downloader
-RUN apt-get update -y && apt-get install -y --no-install-recommends ca-certificates curl tar xz-utils
+FROM alpine:3 as datadog-downloader
+ARG TARGETARCH
+WORKDIR /datadog
+RUN apk add --no-cache curl tar xz
 
 # download the latest dd-java-agent
-ADD 'https://dtdg.co/latest-java-tracer' /datadog/dd-java-agent.jar
+RUN curl -sLo dd-java-agent.jar "https://dtdg.co/latest-java-tracer"
 
 # Get ddprof for BE profiling
-RUN imagearch=$(arch | sed 's/aarch64/arm64/; s/x86_64/amd64/') \
-    && curl -sLo ddprof-linux.tar.xz "https://github.com/DataDog/ddprof/releases/latest/download/ddprof-${imagearch}-linux.tar.xz" \
-    && tar xvf ddprof-linux.tar.xz && mkdir -p /datadog/  \
-    && mv ddprof/bin/ddprof /datadog/ \
-    && chmod 755 /datadog/ddprof
+RUN curl -sL "https://github.com/DataDog/ddprof/releases/latest/download/ddprof-${TARGETARCH}-linux.tar.xz" | tar -xJv --strip-components 2 ddprof/bin/ddprof
 
 
-FROM busybox:latest
+FROM scratch
 ARG RELEASE_VERSION
 ARG BUILD_ROOT
 
