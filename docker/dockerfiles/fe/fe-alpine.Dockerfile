@@ -23,7 +23,7 @@ RUN apk upgrade --no-cache && apk add --no-cache bash curl libc6-compat mysql-cl
 
 # Run as starrocks user
 ARG USER=starrocks
-RUN adduser -h ${STARROCKS_ROOT} -u 1000 -D -s /usr/sbin/nologin ${USER}
+RUN adduser -h ${STARROCKS_ROOT} -u 1001 -D -s /usr/sbin/nologin ${USER}
 USER ${USER}
 WORKDIR ${STARROCKS_ROOT}
 

@@ -41,7 +41,7 @@ WORKDIR $STARROCKS_ROOT
 # Run as starrocks user
 ARG USER=starrocks
 ARG GROUP=starrocks
-RUN groupadd --gid 1000 $GROUP && useradd --no-create-home --uid 1000 --gid 1000 \
+RUN groupadd --gid 1001 $GROUP && useradd --no-create-home --uid 1001 --gid 1001 \
              --shell /usr/sbin/nologin $USER  && \
     chown -R $USER:$GROUP $STARROCKS_ROOT
 USER $USER
