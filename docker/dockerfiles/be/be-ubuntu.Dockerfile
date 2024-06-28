@@ -23,7 +23,7 @@ COPY ${LOCAL_REPO_PATH}/output/be /release/be_artifacts/be
 FROM artifacts-from-${ARTIFACT_SOURCE} as artifacts
 
 
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 ARG STARROCKS_ROOT=/opt/starrocks
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends \

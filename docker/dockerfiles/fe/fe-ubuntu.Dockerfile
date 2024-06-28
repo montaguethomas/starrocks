@@ -23,11 +23,11 @@ COPY ${LOCAL_REPO_PATH}/output/fe /release/fe_artifacts/fe
 FROM artifacts-from-${ARTIFACT_SOURCE} as artifacts
 
 
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 ARG STARROCKS_ROOT=/opt/starrocks
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends \
-        default-jdk mysql-client curl vim tree net-tools less tzdata locales netcat-openbsd && \
+        default-jdk mysql-client curl vim tree net-tools less tzdata locales netcat && \
         ln -fs /usr/share/zoneinfo/UTC /etc/localtime && \
         dpkg-reconfigure -f noninteractive tzdata && \
         locale-gen en_US.UTF-8 && \
