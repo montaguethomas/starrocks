@@ -21,6 +21,7 @@ COPY ${LOCAL_REPO_PATH}/output/be /release/be_artifacts/be
 
 
 FROM artifacts-from-${ARTIFACT_SOURCE} as artifacts
+RUN rm -f /release/be_artifacts/be/lib/starrocks_be.debuginfo
 
 
 FROM ubuntu:22.04
@@ -48,7 +49,6 @@ USER $USER
 
 # Copy all artifacts to the runtime container image
 COPY --from=artifacts --chown=starrocks:starrocks /release/be_artifacts/ $STARROCKS_ROOT/
-RUN rm -f $STARROCKS_ROOT/be/lib/starrocks_be.debuginfo
 
 # Copy be k8s scripts to the runtime container image
 COPY --chown=starrocks:starrocks docker/dockerfiles/be/*.sh $STARROCKS_ROOT/
