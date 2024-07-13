@@ -60,7 +60,7 @@ RUN curl -sLo dd-java-agent.jar "https://dtdg.co/latest-java-tracer"
 RUN curl -sL "https://github.com/DataDog/ddprof/releases/latest/download/ddprof-${TARGETARCH}-linux.tar.xz" | tar -xJv --strip-components 2 ddprof/bin/ddprof
 
 
-FROM scratch
+FROM alpine:3
 ARG RELEASE_VERSION
 ARG BUILD_ROOT
 
